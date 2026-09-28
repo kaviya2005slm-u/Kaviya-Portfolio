@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaviya R | Portfolio</title>
+<meta name="description" content="Kaviya R - B.Sc. Computer Science student. Front-end development, MySQL and CCNA networking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  /* Apply saved / system theme before paint to avoid flash */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root{
+    --bg:#f4f7f6;
+    --surface:#ffffff;
+    --surface-2:#eaf0ee;
+    --text:#14202b;
+    --muted:#4a5b62;
+    --line:#d3dedb;
+    --accent:#0f7d75;
+    --accent-strong:#0a4f4a;
+    --accent-soft:rgba(15,125,117,.10);
+    --gold:#b8892b;
+    --shadow:0 1px 2px rgba(20,32,43,.06), 0 8px 24px rgba(20,32,43,.06);
+    --nav-bg:rgba(244,247,246,.85);
+    --maxw:1040px;
+  }
+  [data-theme="dark"]{
+    --bg:#0c1416;
+    --surface:#121e21;
+    --surface-2:#182629;
+    --text:#e6eeec;
+    --muted:#9db0ac;
+    --line:#233538;
+    --accent:#2fc4b8;
+    --accent-strong:#67dcd2;
+    --accent-soft:rgba(47,196,184,.12);
+    --gold:#e0b04a;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+    --nav-bg:rgba(12,20,22,.85);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:80px;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease,color .25s ease;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif; margin:0; letter-spacing:-.01em;}
+  a{color:var(--accent-strong);}
+  ::selection{background:var(--accent);color:#fff;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important;}}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--nav-bg);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px;}
+  .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:var(--text);text-decoration:none;}
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+    padding:8px 12px;border-radius:6px;white-space:nowrap;
+    transition:color .15s,background .15s;
+  }
+  .nav-links a:hover{color:var(--text);background:var(--accent-soft);}
+  .theme-btn{
+    flex:none;width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line);background:var(--surface);color:var(--text);
+    cursor:pointer;display:grid;place-items:center;
+    transition:border-color .15s,background .15s;
+  }
+  .theme-btn:hover{border-color:var(--accent);}
+  .theme-btn svg{width:18px;height:18px;}
+  .icon-sun{display:none;}
+  [data-theme="dark"] .icon-sun{display:block;}
+  [data-theme="dark"] .icon-moon{display:none;}
+  @media (max-width:820px){.nav-links{display:none;}}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:84px 0 72px;position:relative;overflow:hidden;}
+  .hero-net{position:absolute;right:-40px;top:0;width:min(560px,60%);height:100%;opacity:.55;pointer-events:none;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:30px;position:relative;}
+  .hello{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent-strong);margin-bottom:14px;}
+  .hero h1{font-size:clamp(42px,7vw,68px);line-height:1.04;font-weight:700;}
+  .hero .title{margin-top:14px;font-size:clamp(18px,2.4vw,22px);color:var(--muted);font-weight:500;}
+  .hero .summary{margin-top:18px;max-width:60ch;color:var(--muted);font-size:16.5px;}
+  .cta-row{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 20px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;
+    border:1px solid var(--accent);transition:transform .15s,background .15s,color .15s;
+  }
+  .btn.primary{background:var(--accent);color:#fff;}
+  [data-theme="dark"] .btn.primary{color:#04201d;}
+  .btn.primary:hover{background:var(--accent-strong);}
+  [data-theme="dark"] .btn.primary:hover{background:var(--accent-strong);}
+  .btn.ghost{background:transparent;color:var(--accent-strong);}
+  .btn.ghost:hover{background:var(--accent-soft);}
+
+  .contact-strip{
+    margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;
+  }
+  .contact-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;display:flex;flex-direction:column;gap:3px;min-width:0;
+  }
+  .contact-card .k{font-size:12.5px;color:var(--muted);}
+  .contact-card .v{font-size:14.5px;font-weight:500;color:var(--text);text-decoration:none;overflow-wrap:anywhere;}
+  .contact-card a.v:hover{color:var(--accent-strong);}
+
+  /* ---------- Sections ---------- */
+  section.block{padding:72px 0;border-top:1px solid var(--line);}
+  .sec-head{margin-bottom:34px;}
+  .sec-head h2{font-size:clamp(26px,4vw,34px);font-weight:700;}
+  .sec-head p{margin:8px 0 0;color:var(--muted);max-width:60ch;}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:24px;box-shadow:var(--shadow);
+  }
+
+  /* About */
+  .about-text{font-size:18px;max-width:70ch;color:var(--text);line-height:1.75;}
+
+  /* Timeline (education, internship) */
+  .timeline{position:relative;padding-left:28px;display:flex;flex-direction:column;gap:22px;}
+  .timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line);}
+  .t-item{position:relative;}
+  .t-item::before{
+    content:"";position:absolute;left:-28px;top:26px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .t-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;}
+  .t-item h3{font-size:18px;font-weight:600;}
+  .t-meta{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent-strong);}
+  .t-sub{margin-top:4px;color:var(--muted);font-size:15px;}
+  .score-pill{
+    display:inline-block;margin-top:12px;padding:4px 12px;border-radius:999px;
+    background:var(--accent-soft);color:var(--accent-strong);
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:500;
+  }
+
+  /* Skills */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+  .skill-grid .card{padding:20px;}
+  .skill-grid h3{font-size:16px;font-weight:600;margin-bottom:14px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;padding:6px 11px;border-radius:6px;
+    background:var(--surface-2);border:1px solid var(--line);color:var(--text);
+  }
+
+  /* Projects */
+  .project-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  .project h3{font-size:20px;font-weight:600;margin-bottom:10px;}
+  .project p{color:var(--muted);margin:0 0 12px;font-size:15.5px;}
+  .project ul{margin:0 0 16px;padding-left:20px;color:var(--muted);font-size:15px;}
+  .project li{margin-bottom:6px;}
+  .project .chips{margin-top:14px;}
+  .project .link{font-family:'JetBrains Mono',monospace;font-size:13.5px;}
+
+  /* Two-col lists */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:720px){.two-col{grid-template-columns:1fr;}}
+  .card h3{font-size:18px;font-weight:600;margin-bottom:16px;}
+  ul.marks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  ul.marks li{position:relative;padding-left:22px;font-size:15.5px;}
+  ul.marks li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:2px;background:var(--gold);}
+
+  .lang-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .lang-list .chip{font-size:14px;padding:8px 14px;}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--surface);}
+  footer h2{font-size:28px;margin-bottom:10px;}
+  footer p{color:var(--muted);max-width:52ch;margin:0 0 24px;}
+  .foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  @media (max-width:600px){
+    .wrap{padding:0 18px;}
+    .hero{padding:56px 0 48px;}
+    .hero-net{opacity:.3;}
+    section.block{padding:52px 0;}
+    .card{padding:20px;}
+  }
+  @media print{
+    .nav,.theme-btn,.cta-row,.hero-net{display:none !important;}
+    body{background:#fff;color:#000;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">Kaviya<span>.R</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Internship</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to dark theme" title="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <svg class="hero-net" viewBox="0 0 560 420" aria-hidden="true">
+      <g stroke="var(--accent)" stroke-width="1" opacity=".45">
+        <line x1="60" y1="70" x2="230" y2="140"/><line x1="230" y1="140" x2="180" y2="300"/>
+        <line x1="230" y1="140" x2="400" y2="90"/><line x1="400" y1="90" x2="500" y2="200"/>
+        <line x1="180" y1="300" x2="380" y2="360"/><line x1="380" y1="360" x2="500" y2="200"/>
+        <line x1="400" y1="90" x2="380" y2="360"/>
+      </g>
+      <g fill="var(--accent)">
+        <circle cx="60" cy="70" r="4"/><circle cx="230" cy="140" r="5"/><circle cx="180" cy="300" r="4"/>
+        <circle cx="400" cy="90" r="5"/><circle cx="500" cy="200" r="6"/><circle cx="380" cy="360" r="5"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="hello">Hello, I'm</div>
+          <h1>Kaviya R</h1>
+          <div class="title">B.Sc. Computer Science Student &middot; Front-End Developer &middot; Networking (CCNA)</div>
+          <p class="summary">I build responsive web pages and small networks. Quick learner with hands-on experience in HTML, CSS, Bootstrap, JavaScript, MySQL and Cisco Packet Tracer.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="KAVIYA_RESUME.docx" download>Download resume</a>
+            <a class="btn ghost" href="#projects">View projects</a>
+            <a class="btn ghost" href="#contact">Contact me</a>
+          </div>
+        </div>
+
+        <div class="contact-strip">
+          <div class="contact-card"><span class="k">Mobile</span><a class="v" href="tel:+919361923737">+91 93619 23737</a></div>
+          <div class="contact-card"><span class="k">Email</span><a class="v" href="mailto:kaviya2005slm@gmail.com">kaviya2005slm@gmail.com</a></div>
+          <div class="contact-card"><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/kaviya-r-6a9b19360" target="_blank" rel="noopener">linkedin.com/in/kaviya-r-6a9b19360</a></div>
+          <div class="contact-card"><span class="k">Address</span><span class="v">Tamil Nadu, India</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT / OBJECTIVE ================= -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2>Objective</h2></div>
+      <p class="about-text">A highly motivated B.Sc. Computer Science student with a strong passion for web designing, networking, and proficiency in MS Office tools including Word, Excel and PowerPoint, MySQL and CCNA. Recognized as an effective and quick learner with the ability to adapt to new technologies and environments. Seeking an opportunity to apply technical knowledge, creativity, and problem-solving skills to contribute meaningfully to organizational growth while enhancing professional expertise.</p>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head"><h2>Qualification</h2></div>
+      <div class="timeline">
+        <article class="t-item card">
+          <div class="t-top"><h3>B.Sc. Computer Science</h3><span class="t-meta">2023 &ndash; 2026</span></div>
+          <div class="t-sub">Muthayammal College of Arts and Science (Autonomous), Periyar University</div>
+          <span class="score-pill">Percentage: 68%</span>
+        </article>
+        <article class="t-item card">
+          <div class="t-top"><h3>HSC</h3><span class="t-meta">2022 &ndash; 2023</span></div>
+          <div class="t-sub">Jayarani Girls Hr. Sec. School</div>
+          <span class="score-pill">Percentage: 75%</span>
+        </article>
+        <article class="t-item card">
+          <div class="t-top"><h3>SSLC</h3><span class="t-meta">2020 &ndash; 2021</span></div>
+          <div class="t-sub">Municipal Girls Hr. Sec. School</div>
+          <span class="score-pill">Result: Pass</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="sec-head"><h2>Skills</h2></div>
+      <div class="skill-grid">
+        <div class="card">
+          <h3>Web development</h3>
+          <div class="chips">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span>
+            <span class="chip">JavaScript</span><span class="chip">GitHub</span><span class="chip">Hosting</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Networking &amp; database</h3>
+          <div class="chips"><span class="chip">CCNA</span><span class="chip">MySQL</span></div>
+        </div>
+        <div class="card">
+          <h3>Microsoft Office</h3>
+          <div class="chips"><span class="chip">Word</span><span class="chip">Excel</span><span class="chip">PowerPoint</span></div>
+        </div>
+        <div class="card">
+          <h3>Professional skills</h3>
+          <div class="chips"><span class="chip">Problem solving technique</span><span class="chip">Team work</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="sec-head"><h2>Projects</h2></div>
+      <div class="project-grid">
+
+        <article class="card project">
+          <h3>Gain Knowledge &ndash; Educational Website</h3>
+          <ul>
+            <li>Developed a responsive educational website named <strong>Gain Knowledge</strong> using HTML, CSS and Bootstrap as a hands-on front-end practice project.</li>
+            <li>Created from my own idea, with mobile view added to the web page.</li>
+          </ul>
+          <a class="link" href="https://gainknowledge-p.netlify.app/" target="_blank" rel="noopener">gainknowledge-p.netlify.app &nearr;</a>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span></div>
+        </article>
+
+        <article class="card project">
+          <h3>Bank Management System</h3>
+          <ul>
+            <li>Developed using <strong>MySQL</strong> to manage customer, transaction and branch information through a relational database.</li>
+            <li>Implemented SQL operations including DDL, DML, DQL, DCL, TCL, joins, aggregate functions, subqueries, views, stored procedures and triggers.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">MySQL</span><span class="chip">DDL / DML / DQL</span><span class="chip">DCL / TCL</span>
+            <span class="chip">Joins</span><span class="chip">Views</span><span class="chip">Stored procedures</span><span class="chip">Triggers</span>
+          </div>
+        </article>
+
+        <article class="card project">
+          <h3>CCNA Network Design Project</h3>
+          <ul>
+            <li>Developed a network simulation using Cisco Packet Tracer, implementing RIP dynamic routing, DHCP, ACL, DNS, VLAN and web server configurations.</li>
+            <li>Provides secure, scalable and efficient network connectivity.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Cisco Packet Tracer</span><span class="chip">RIP</span><span class="chip">DHCP</span>
+            <span class="chip">ACL</span><span class="chip">DNS</span><span class="chip">VLAN</span><span class="chip">Web server</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTERNSHIP ================= -->
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><h2>Internship</h2></div>
+      <div class="timeline">
+        <article class="t-item card">
+          <div class="t-top"><h3>Front-End Development Intern</h3><span class="t-meta">10 days</span></div>
+          <div class="t-sub">Biovus Blockchain Technologies Private Limited</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICATIONS + ACHIEVEMENTS ================= -->
+  <section class="block" id="achievements">
+    <div class="wrap">
+      <div class="sec-head"><h2>Certifications &amp; Achievements</h2></div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Certifications</h3>
+          <ul class="marks">
+            <li>Typewriting English Junior</li>
+            <li>Web Development</li>
+            <li>DCA course</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Achievements</h3>
+          <ul class="marks">
+            <li>First prize in PPT presentation competition at Gobi Arts and Science College.</li>
+            <li>First prize in skit (drama) competition from school.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LANGUAGES + HOBBIES ================= -->
+  <section class="block" id="personal">
+    <div class="wrap">
+      <div class="sec-head"><h2>Languages &amp; Hobbies</h2></div>
+      <div class="two-col">
+        <div class="card">
+          <h3>Languages known</h3>
+          <div class="lang-list"><span class="chip">Tamil</span><span class="chip">English</span><span class="chip">Kannada</span></div>
+        </div>
+        <div class="card">
+          <h3>Hobbies</h3>
+          <div class="lang-list"><span class="chip">Listening to music</span><span class="chip">Dancing</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>Open to front-end development and networking opportunities. Feel free to reach out.</p>
+    <div class="contact-strip" style="margin-top:0;">
+      <div class="contact-card"><span class="k">Mobile</span><a class="v" href="tel:+919361923737">+91 93619 23737</a></div>
+      <div class="contact-card"><span class="k">Email</span><a class="v" href="mailto:kaviya2005slm@gmail.com">kaviya2005slm@gmail.com</a></div>
+      <div class="contact-card"><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/kaviya-r-6a9b19360" target="_blank" rel="noopener">linkedin.com/in/kaviya-r-6a9b19360</a></div>
+      <div class="contact-card"><span class="k">Address</span><span class="v">Tamil Nadu, India</span></div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year"></span> Kaviya R. All rights reserved.</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+
+  function syncLabel() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  syncLabel();
+
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncLabel();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
